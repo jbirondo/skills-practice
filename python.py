@@ -33,3 +33,26 @@ class Solution:
                 left = right
             right += 1
         return max_profit
+
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        # ans=0
+        # for i in range(len(prices)-1):
+        #     for j in range(i+1,len(prices)):
+        #         temp=prices[j]-prices[i]
+        #         ans=max(ans,temp)
+        # return ans
+        ans=0
+        i,j=0,1
+        while j!=len(prices):
+            temp=prices[j]-prices[i]
+            if temp<0:
+                i=j
+            elif temp>0:
+                ans=max(temp,ans)
+            j+=1
+        return ans
