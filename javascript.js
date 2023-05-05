@@ -54,3 +54,29 @@ const maxProfit = (prices) => {
   }
   return max_profit;
 };
+
+//recursion
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfitRecursion = function(prices) {
+    let dp = new Array(prices.length+1);
+    for(let i = 0;i<dp.length;i++){
+        dp[i] = new Array(2).fill(-1);
+    }
+    let ans = solve(prices, 0, 1, dp);
+    return ans;
+};
+
+var solve = (arr, i, buy, dp)=>{
+    if(i>=arr.length) return 0;
+    if(dp[i][buy]!=-1) return dp[i][buy];
+    if(buy){
+        dp[i][buy] = Math.max(solve(arr, i+1, buy, dp), solve(arr, i+1, 0, dp)- arr[i])
+    }else{
+        dp[i][buy] = Math.max(solve(arr, i+1, buy, dp), arr[i])
+    }
+    return dp[i][buy];
+}
