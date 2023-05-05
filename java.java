@@ -73,3 +73,17 @@ class Solution {
     }
 }
 
+// Approach2: Replacing the stack with a variable as we only to keep to least number we've encountered in past
+ public int maxProfit(int[] prices) {
+    int variable=(int)1e9;
+    int ans=0;
+    for(int i : prices){
+        if(variable==(int)1e9)variable=i;
+        else{
+            if(i<variable)variable=i;
+            else ans=Math.max(ans,i-variable);
+        }
+    }
+
+    return ans;
+}
