@@ -17,3 +17,5 @@ class Solution:
                 return [numToIndex[target - nums[i]], i]
             numToIndex[nums[i]] = i
         return []
+    
+# Best Time to Buy and Sell Stock
