@@ -80,3 +80,11 @@ var solve = (arr, i, buy, dp)=>{
     }
     return dp[i][buy];
 }
+
+// contains dup
+
+// Time complexity: O(n)
+// Space complexity: O(n)
+var containsDuplicate = function(nums) {
+    const s = new Set(nums); return s.size !== nums.length
+};
