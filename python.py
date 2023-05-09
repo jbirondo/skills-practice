@@ -56,3 +56,20 @@ class Solution(object):
                 ans=max(temp,ans)
             j+=1
         return ans
+    
+    # contains dup
+    
+    class Solution(object):
+        def containsDuplicate(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: bool
+            """
+            hash = {}
+            for x in nums:
+
+                if x in hash:
+                    return True
+                hash[x] = 1
+            return False
+        
