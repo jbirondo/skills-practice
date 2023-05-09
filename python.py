@@ -73,3 +73,7 @@ class Solution(object):
                 hash[x] = 1
             return False
         
+    # slow 
+    def containsDuplicate(nums):
+    	return len(set(nums)) != len(nums)
+        
