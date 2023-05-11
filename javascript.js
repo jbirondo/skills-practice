@@ -150,3 +150,39 @@ var maxSubArray = function(nums) {
     }
     return maxSum;      // return the contiguous subarray which has the largest sum...
 };
+
+// Divide and conquer
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function(nums) {
+    
+    function helper(nums, start, end) {
+        if (start === end) {
+            const ansObj = {
+                maxPrefixSum: nums[start],
+                maxSuffixSum: nums[start],
+                totalSum: nums[start],
+                maxSubArraySum: nums[start]
+            };
+            
+            return ansObj;
+        }
+        
+        const left = helper(nums, start, ~~((start+end)/2));
+        const right = helper(nums, ~~((start+end)/2 + 1), end);
+        
+        const ansObj = {
+            maxPrefixSum: Math.max(left.maxPrefixSum, left.totalSum + right.maxPrefixSum),
+            maxSuffixSum: Math.max(right.maxSuffixSum, right.totalSum + left.maxSuffixSum),
+            totalSum: left.totalSum + right.totalSum,
+            maxSubArraySum: Math.max(left.maxSubArraySum, right.maxSubArraySum, left.maxSuffixSum + right.maxPrefixSum)
+        };
+        
+        return ansObj;
+    }
+    
+    return helper(nums, 0, nums.length-1).maxSubArraySum;
+};
