@@ -146,8 +146,9 @@ class Solution:
     
     # 153. Find Minimum in Rotated Sorted Array
     
-        def findMin(self, nums: List[int]) -> int:
-            lo, hi = 0, len(nums)-1
+class Solution:    
+    def findMin(self, nums: List[int]) -> int:
+        lo, hi = 0, len(nums)-1
         while lo < hi:
             mid = (lo+hi)//2
             if nums[mid] > nums[hi]:
@@ -155,3 +156,4 @@ class Solution:
             else:
                 hi = mid
         return nums[lo]
+    
