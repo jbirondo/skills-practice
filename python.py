@@ -144,7 +144,7 @@ class Solution:
                 maxSum = arr[i]
         return maxSum       # Return the contiguous subarray which has the largest sum...
     
-    # 153. Find Minimum in Rotated Sorted Array
+# 153. Find Minimum in Rotated Sorted Array
     
 class Solution:    
     def findMin(self, nums: List[int]) -> int:
@@ -157,3 +157,16 @@ class Solution:
                 hi = mid
         return nums[lo]
     
+# recursion
+
+def findMin(self, nums):
+    return self.helper(nums, 0, len(nums)-1)
+        
+def helper(self, nums, l, r):
+    if l == r:
+        return nums[l]
+    mid = l + (r-l)//2
+    if nums[mid] > nums[r]:
+        return self.helper(nums, mid+1, r)
+    else:
+        return self.helper(nums, l, mid)
