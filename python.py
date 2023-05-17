@@ -158,15 +158,17 @@ class Solution:
         return nums[lo]
     
 # recursion
-
-def findMin(self, nums):
-    return self.helper(nums, 0, len(nums)-1)
+class Solution:
+    def findMin(self, nums):
+        return self.helper(nums, 0, len(nums)-1)
+            
+    def helper(self, nums, l, r):
+        if l == r:
+            return nums[l]
+        mid = l + (r-l)//2
+        if nums[mid] > nums[r]:
+            return self.helper(nums, mid+1, r)
+        else:
+            return self.helper(nums, l, mid)
         
-def helper(self, nums, l, r):
-    if l == r:
-        return nums[l]
-    mid = l + (r-l)//2
-    if nums[mid] > nums[r]:
-        return self.helper(nums, mid+1, r)
-    else:
-        return self.helper(nums, l, mid)
+# 33. Search in Rotated Sorted Array

@@ -271,3 +271,5 @@ int binSearch(int nums[], int lo, int hi) {
 		return nums[mid];
 	}
 }
+
+// 33. Search in Rotated Sorted Array
