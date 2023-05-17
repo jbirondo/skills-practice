@@ -310,7 +310,7 @@ var rotatedSearch = function(nums, target, left = 0, right = nums.length - 1) {
         } else {
         // Otherwise searching the left portion
         return rotatedSearch(nums, target, left, mid)
-        }hftran12345
+        }
         
     }
 };
