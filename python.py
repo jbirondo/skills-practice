@@ -182,3 +182,12 @@ def search(self, nums, target):
         else:
             hi = mid
     return lo if target in nums[lo:lo+1] else -1
+
+# with bisect
+
+class Solution:
+    def search(self, nums, target):
+        self.__getitem__ = lambda i: \
+            (nums[0] <= target) ^ (nums[0] > nums[i]) ^ (target > nums[i])
+        i = bisect.bisect_left(self, True, 0, len(nums))
+        return i if target in nums[i:i+1] else -1
