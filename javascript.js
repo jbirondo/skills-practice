@@ -316,3 +316,40 @@ var rotatedSearch = function(nums, target, left = 0, right = nums.length - 1) {
 };
 
 // 15. 3Sum
+// Brute force will give O(n^3)
+// Idea is, fix one value and convert the problem into TWO SUM problem
+// Time -> O(n^2)
+// Space -> O(n)
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+    
+    const ans = [], n = nums.length;
+    
+    // To handle duplicates, we need 2 things
+    // 1. Sort the array -> O(nlogn)   
+    nums.sort();
+    // 2. Use a set to check duplicates 
+    const set = new Set();
+    
+    for(let i=0; i<n; i++) {
+        
+        const map = new Map();
+        
+        for(let j=i+1; j<n; j++) {
+            
+            if (map.has(-nums[i]-nums[j]) && !set.has(`${[nums[i],-nums[i]-nums[j],nums[j]]}`)) {
+                ans.push([nums[i],-nums[i]-nums[j],nums[j]]);
+                set.add(`${[nums[i],-nums[i]-nums[j],nums[j]]}`);
+            }
+            
+            map.set(nums[j]);
+        }
+    }
+    
+    return ans;
+};
+
