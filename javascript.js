@@ -442,3 +442,20 @@ var maxArea = function(H) {
     }
     return ans
 };
+
+// recursion
+
+const maxArea = (height) => {
+  const { length } = height;
+  const getArea = (left, right) => Math.min(height[left], height[right]) * (right - left);
+  const findMaxArea = (left, right, max) => {
+    if (left === right) {
+      return max;
+    }
+    if (height[left] > height[right]) {
+      return findMaxArea(left, right - 1, Math.max(max, getArea(left, right - 1)));
+    }
+    return findMaxArea(left + 1, right, Math.max(max, getArea(left + 1, right)));
+  };
+  return findMaxArea(0, length - 1, getArea(0, length - 1));
+};
