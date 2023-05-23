@@ -459,3 +459,5 @@ const maxArea = (height) => {
   };
   return findMaxArea(0, length - 1, getArea(0, length - 1));
 };
+
+// 70. Climbing Stairs
