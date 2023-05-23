@@ -482,3 +482,30 @@ var climbStairs = function(n) {
     // T.C: O(N)
     // S.C: O(N)
 };
+
+/*
+Recursion
+
+climbStairs(n) returns the total number of different ways of taking n steps.
+Hence, climbStairs(n-1) + climbStairs(n-2) gives the result
+since we can either climb 1 or 2 steps
+
+For more optimised solution, we use an Array to keep track of results that have already been computed
+*/
+
+var climbStairs = function(n, memo = new Array()) {
+    if (n === 1) {
+        return 1;
+    }
+    if (n === 2) {
+        return 2;
+    }
+    if (memo[n] !== undefined) {
+        return memo[n];
+    }
+    let res = climbStairs(n-1, memo) + climbStairs(n-2, memo);
+    memo[n] = res;
+    return res;
+    // T.C: O(N)
+    // S.C: O(N)
+};
