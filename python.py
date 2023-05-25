@@ -426,3 +426,25 @@ def lengthOfLIS(self, nums: List[int]) -> int:
 				cache[prev_max_idx][idx] = max_lis(idx + 1, prev_max_idx)
 		return cache[prev_max_idx][idx]
 	return max_lis(0, -1)
+
+# bottom-up dynamic programming with binary search
+
+def lengthOfLIS(self, nums: List[int]) -> int:
+    if not nums:
+        return 0
+	dp = [nums[0]]
+	len_dp = 1
+	for i in range(1, len(nums)):
+		left, right = 0, len(dp) - 1
+		while left < right:
+			mid = (left + right) // 2
+			if dp[mid] < nums[i]:
+				left = mid + 1
+			else:
+				right = mid
+		if dp[left] < nums[i]:
+			dp.append(nums[i])
+			len_dp += 1
+		else:
+			dp[left] = nums[i]
+	return len_dp
