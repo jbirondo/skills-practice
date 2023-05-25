@@ -380,3 +380,6 @@ class Solution(object):
             dp[i] = min([dp[i - c] if i - c >= 0 else MAX for c in coins]) + 1
 
         return [dp[amount], -1][dp[amount] == MAX]
+    
+# 300. Longest Increasing Subsequence
+
