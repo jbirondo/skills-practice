@@ -608,3 +608,30 @@ const lengthOfLIS = nums => {
   }
   return Math.max(...sequence)
 }
+
+var lengthOfLIS = function(nums) {
+    // implementing solution 2
+    let sub = [nums[0]]; 
+    for(let i = 1; i< nums.length; i++){
+        let currVal = nums[i]; 
+		// important, this is from sub
+        let prevVal = sub[i-1];
+        if(currVal > prevVal){
+            // meaning there is increasing
+            // because prevVal is < currVal
+            // push into subsequence array
+            sub.push(currVal)
+        } else {
+            // currVal is smaller than previous
+            // so this is not a continously increasing value
+            // check from the beginning of our sub array
+            let j = 0; 
+            while(currVal > sub[j]){
+                j++;
+            }
+            sub[j] = currVal;
+        }
+        
+    }
+    return sub.length
+};
