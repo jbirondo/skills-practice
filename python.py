@@ -458,3 +458,20 @@ def wordBreak(self, s, words):
     for i in range(1, len(s)+1):
         ok += any(ok[j] and s[j:i] in words for j in range(max(0, i-max_len),i)),
     return ok[-1]
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        from collections import deque
+   		q = deque([s])
+		seen = set() 
+		while q:
+            s = q.popleft()    # popleft() = BFS ; pop() = DFS
+            for word in wordDict:
+                if s.startswith(word):
+                    new_s = s[len(word):]
+					if new_s == "": 
+                        return True
+                    if new_s not in seen:
+                        q.append(new_s)
+                        seen.add(new_s)
+        return False
