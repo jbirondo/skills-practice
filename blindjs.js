@@ -170,3 +170,65 @@ var createHash = function(s) {
     }
     return res
 }
+
+// valid parenthesis using stack
+
+var isValid = function(s) {
+    let stack = []
+    let closures = {')':'(', '}':'{', ']':'['}
+    for (let i = 0; i < s.length; i++) {
+        if ( s[i] in closures && closures[s[i]] == stack[stack.length - 1]){
+            stack.pop()
+            continue
+        }
+        stack.push(s[i])
+    }
+    return stack.length == 0
+};
+
+// react button toggle
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+
+const Toggle = () => {
+  const [on, setOn] = useState(true);
+
+  return (
+    <button onClick={() => setOn(!on)}>{ on ? 'ON' : 'OFF' }</button>
+  );
+}
+
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('root')
+);
+
+// class and hook
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttonOn: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({buttonOn: !this.state.buttonOn});
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>{this.state.buttonOn?'ON':'OFF'}</button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('root')
+);
