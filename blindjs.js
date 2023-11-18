@@ -131,3 +131,42 @@ var maxProduct = function(nums) {
 
     return product;
 };
+
+// find minimum in rotated sorted array recursive remember to return the recurse call
+
+const findMin = (nums, start = 0, end = nums.length - 1) => {
+  const left = nums[start];
+  const right = nums[end];
+  const mid = Math.floor((start + end) / 2);
+  const middle = nums[mid];
+  if (left > middle) return findMin(nums, start + 1, mid);
+  if (middle > right) return findMin(nums, mid + 1, end);
+  return left
+};
+
+// valid anagram by creating objs of character counts of string and target then comparison
+
+var isAnagram = function(s, t) {
+    let hashS = createHash(s)
+    let hashT = createHash(t)
+    for (const [key, value] of Object.entries(hashT)) {
+        if ( key in hashS && hashS[key] == value) {
+            delete hashS[key]
+        } else {
+            return false
+        }
+    }
+    return Object.keys(hashS).length == 0
+}
+
+var createHash = function(s) {
+    res = {}
+    for (let i = 0; i < s.length; i++ ) {
+        if (s[i] in res) {
+            res[s[i]] += 1
+        } else {
+            res[s[i]] = 1
+        }
+    }
+    return res
+}
